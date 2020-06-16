@@ -77,3 +77,38 @@ function circular(myData:CircularArea):string{
 console.log(circular({color:'blue',colors:'yellow',height:200}))
 
 ```
+
+#### 4、接口中定义只读参数 
+```javascript
+interface OnlyArrey{
+  readonly x:string //定义只读类型就是在参数的前面添加readonly
+  readonly y:string
+}
+let myObj:OnlyArrey = {
+  x:'1111',
+  y:'2222',
+}
+myObj.x = 2222 // 接口中把这个值定义为只读类型是不可更改的，这里会报错
+console.log(myObj)
+//定义只读数组
+let onlyArray:ReadonlyArray<number> = [1,2,3,34,4,5,7]
+onlyArray[2] = 2 // 这是会报错的
+
+```
+
+#### 5、函数类型接口 
+```javascript
+// 函数类型接口
+interface SearchFunc{
+  (source:string,subString:string):boolean // 这里定义了一个函数类型的接口 接收两个参数 返回值是boolean类型
+}
+let mySearch: SearchFunc
+// 在使用的时候 函数的传入值可以使用简写 但是类型必须一致
+mySearch = function(sur:string,subStr:string):boolean{
+  let search = sur.search(subStr)
+  return search>-1
+}
+
+mySearch('hello','he')
+
+```
