@@ -202,3 +202,71 @@ let analogtal = createClock(AnalogClock,15,20)
 digital.tick()
 
 ```
+#### 9、接口的继承方法 extends
+```typescript
+
+// 接口的继承
+interface Shape{
+  color:string
+}
+
+interface PanStroke{
+  penWidth:number
+}
+
+// 使用extends继承接口
+// 让接口squre继承Shape和PanStroke两个接口
+interface Squre extends Shape,PanStroke{
+  sideLength:number
+}
+
+// 新建squre对象使用Squre接口
+let squre = {} as Squre;
+
+squre.color = 'red'
+squre.sideLength = 10
+squre.penWidth = 3.0
+
+```
+#### 10、接口继承类
+```typescript
+// 接口继承类
+
+// 创建一个类并添加一个私有属性
+class Control{
+  private state:any
+
+}
+
+// 创建一个接口 继承 Control类的所有属性
+interface SelecttableControl extends Control{
+  // 定义一个select方法
+  select()
+}
+
+// 创建一个类 extends(继承)自 Control 并implements(重写) SelecttableControl
+class Button extends Control implements SelecttableControl{
+  // 因为继承自 
+  select(){
+    console.log('select11')
+  }
+}
+let button = new Button;
+button.select()
+
+// 创建一个类 extends 自Control 
+class TextBox extends Control {
+  select(){
+    console.log('select222')
+  }
+}
+let textBox = new TextBox;
+textBox.select()
+
+// 这个class是不被允许的 因为他无法通过implements 或者 extends 获取SelecttableControl父类Control中的私有属性
+class ImageC implements SelecttableControl{
+ 
+}
+
+
+```
