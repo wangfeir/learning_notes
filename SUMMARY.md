@@ -17,4 +17,6 @@
     * [混合类型接口 extends](typescript_nodes/interface/10.md)
     * [接口继承类](typescript_nodes/interface/11.md)
 
+  * [类 calss](typescript_nodes/class/class.md)
+    * [实现一个简单的类](typescript_nodes/class/01.md)
 
