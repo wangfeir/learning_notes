@@ -103,3 +103,41 @@ let person = new Person('Tom') // 这是被允许的，但是如果constructor�
 console.log(person.name) // 这样也是不被允许的，无论是继承的class还是直接new的class都不允许在外部访问受保护的值
 
 ```
+
+#### 6、抽象类
+- 用abstract关键字定义抽象类和抽象方法，抽象类中的抽象方法不包含具体实现并且必须在派生类中实现。
+- abstract抽象方法只能放在抽象类里面 
+
+```typescript
+// 使用abstract 定义一个抽象类
+abstract class Department {
+  name: string
+  constructor(name: string) {
+    this.name = name
+  }
+  printName(): void {
+    console.log(`Department name ${this.name}`)
+  }
+  // 定义一个抽象方法 方法在必须在派生类中实现,否则会报错
+  abstract printMeeting(): void
+}
+
+class AccountingDepartment extends Department {
+  constructor() {
+    super('Accounting ad Auditing')
+  }
+  printMeeting(): void {
+    console.log('The Accounting Deepartment meets each Mondy at 10am')
+  }
+  genteraterReports(): void {
+    console.log('Generating accounting reports....')
+  }
+}
+
+
+let department: Department
+department = new AccountingDepartment()
+department.printName();
+department.printMeeting();
+department.genteraterReports();  // error  因为department的格式定义为Department，而抽象类中没有定义这个方法；
+```
