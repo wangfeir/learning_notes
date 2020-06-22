@@ -19,4 +19,5 @@
 
   * [类 calss](typescript_nodes/class/class.md)
     * [实现一个简单的类](typescript_nodes/class/01.md)
+    * [抽象类](typescript_nodes/class/06.md)
 
