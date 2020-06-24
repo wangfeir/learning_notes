@@ -58,3 +58,43 @@ stringGenericNumber.add= (x,y)=>{
 console.log(stringGenericNumber.add(stringGenericNumber.zeroValue ,'text'))
 
 ```
+
+#### 泛型约束
+
+- 如果我们想要限制传入值必须带有某一个属性比如.numLengs属性。 只要传入的类型有这个属性，我们就允许，就是说至少包含这一属性。 
+
+
+创建一个包含 .numLengs属性的类或者接口，使用这个类或者接口和extends关键字来实现约束：
+
+```typescript
+// 创建一个带有 numLengs 的类
+class Animal{
+  numLengs:number
+}
+
+class LionKeeper{
+  nametag:string
+}
+// 创建一个类 继承 Animal
+class Lion extends Animal{
+  keeper:LionKeeper
+}
+// 创建一个新的类
+class Bee {
+  name:string
+}
+class Dog {
+  name:string
+  numLengs:number
+}
+// <T extends Animal>  传入的参数必须有 Animal 已有的属性
+// (c:new()=>T) 传入的值 意即c的类型是对象类型且这个对象包含返回类型是T的构造函数。
+// 注意，':'后面是TypeInformation，这里的'=>'不是arrowfunction(箭头函数)，只是用来标明函数返回类型
+// :T 返回值必须和传入值类型一致
+function createInstance<T extends Animal>(c:new()=>T):T{
+  return new c()
+}
+createInstance(Lion).keeper
+// createInstance(Bee)  // error 因为Bee不是继承自Animal 并且本身也没有numLengs的属性
+createInstance(Dog) // 这样不会报错 因为Dog虽然不是继承自Animal但是本身有numLengs的属性
+```
